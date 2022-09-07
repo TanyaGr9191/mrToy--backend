@@ -8,16 +8,31 @@ module.exports = {
     save,
 }
 
-function query(){
+function query(filterBy = {}) {
+
+    var { name, maxPrice, minPrice, date } = filterBy
+        
+    const regex = new RegExp(name, 'i')
+    var toys = gToys.filter(toy => regex.test(toy.name))
+    console.log('toysssssssss', toys)
+
+    maxPrice = maxPrice || Infinity
+    minPrice = minPrice || 0
+    toys = gToys.filter(toy =>
+        (toy.createdAt < date) &&
+        (toy.price < maxPrice) &&
+        toy.price > minPrice)
+
+    console.log('toyssSSSS', toys)
     return Promise.resolve(gToys)
 }
 
-function getById(toyId){
+function getById(toyId) {
     const toy = gToys.find(toy => toy._id === toyId)
     return Promise.resolve(toy)
 }
 
-function remove(toyId){
+function remove(toyId) {
     const idx = gToys.findIndex(toy => toy._id === toyId)
     gToys.splice(idx, 1)
 
@@ -25,7 +40,7 @@ function remove(toyId){
 }
 
 function save(toy) {
-    if (toy._id){
+    if (toy._id) {
         const toyToUpdate = gToys.find(currToy => currToy._id === toy._id)
 
         toyToUpdate.name = toy.name
@@ -36,7 +51,7 @@ function save(toy) {
         gToys.push(toy)
     }
     return _saveToysToFile()
-                .then(() => toy)
+        .then(() => toy)
 }
 
 function _makeId(length = 5) {
@@ -48,11 +63,11 @@ function _makeId(length = 5) {
     return txt
 }
 
-function _saveToysToFile(){
-    return new Promise ((resolve, reject)=>{
+function _saveToysToFile() {
+    return new Promise((resolve, reject) => {
         const data = JSON.stringify(gToys, null, 2)
-        fs.writeFile('data/toys.json', data, (err)=>{
-            if(err) return reject('Cannot save to file')
+        fs.writeFile('data/toys.json', data, (err) => {
+            if (err) return reject('Cannot save to file')
             resolve()
         })
     })
