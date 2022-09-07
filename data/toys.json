@@ -1,34 +1,11 @@
 [
   {
-    "_id": "t102",
-    "name": "Barbie Dolly",
-    "price": 200,
-    "label": "Baby",
-    "createdAt": 1631031801016,
-    "inStock": true
-  },
-  {
-    "_id": "t103",
-    "name": "Box game",
-    "price": 215,
-    "label": "Puzzle",
-    "createdAt": 1631041801011,
-    "inStock": true
-  },
-  {
-    "name": "DollDoll",
+    "name": "DollDollDoll",
     "price": 123,
     "label": "Puzzle",
     "createdAt": 1631031801012,
     "inStock": true,
     "_id": "NX3Xd"
-  },
-  {
-    "name": "Puki Ja",
-    "price": 200,
-    "inStock": false,
-    "_id": "B5Q9n",
-    "label": "Puzzle"
   },
   {
     "name": "Puki Ja Doll",
@@ -55,16 +32,10 @@
     "_id": "OUDIM"
   },
   {
-    "name": "ddddd",
-    "price": "4444",
+    "name": "yyyyyyy",
+    "price": "9999",
     "label": "Baby",
-    "_id": "NHcdn"
-  },
-  {
-    "name": "yyyy",
-    "price": "333",
-    "label": "Outdoor",
-    "_id": "WAdHl",
-    "createdAt": 1662559006076
+    "_id": "XcbZl",
+    "createdAt": 1662564161709
   }
 ]
