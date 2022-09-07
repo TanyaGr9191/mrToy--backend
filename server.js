@@ -10,7 +10,7 @@ if (process.env.NODE_ENV === 'production'){
     app.use(express.static('public'))
 }else{
     const corsOptions ={
-        origin: "http://localhost:3002",
+        origin: "http://localhost:3000",
         methods:"GET,PUT,POST,DELETE",
         credentials: true
     }
