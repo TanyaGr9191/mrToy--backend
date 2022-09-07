@@ -9,22 +9,25 @@ module.exports = {
 }
 
 function query(filterBy = {}) {
+    console.log('filterByy', filterBy)
 
-    var { name, maxPrice, minPrice, date } = filterBy
-        
-    const regex = new RegExp(name, 'i')
-    var toys = gToys.filter(toy => regex.test(toy.name))
-    console.log('toysssssssss', toys)
+    var toys = gToys
 
-    maxPrice = maxPrice || Infinity
-    minPrice = minPrice || 0
-    toys = gToys.filter(toy =>
-        (toy.createdAt < date) &&
-        (toy.price < maxPrice) &&
-        toy.price > minPrice)
+    var { name, minPrice, date } = filterBy
+    if (name) {
+        const regex = new RegExp(name, 'i')
+        toys = gToys.filter(toy => regex.test(toy.name))
+    }
 
-    console.log('toyssSSSS', toys)
-    return Promise.resolve(gToys)
+    if (minPrice || date) {
+        minPrice = minPrice || 0
+        toys = toys.filter(toy =>
+            (toy.price > minPrice) ||
+            (toy.createdAt < date))
+    }
+
+    console.log('toys', toys)
+    return Promise.resolve(toys)
 }
 
 function getById(toyId) {
@@ -48,6 +51,7 @@ function save(toy) {
         toyToUpdate.label = toy.label
     } else {
         toy._id = _makeId()
+        toy.createdAt = Date.now()
         gToys.push(toy)
     }
     return _saveToysToFile()
@@ -72,4 +76,37 @@ function _saveToysToFile() {
         })
     })
 
+}
+
+function _getNewToy() {
+    return {
+        name: _makeName(),
+        price: utilService.getRandomIntInclusive(100, 600),
+        label: _makeLabel(),
+        inStock: _getRandomStock(),
+        createdAt: Date.now()
+    }
+
+    function _getRandomStock() {
+        return utilService.getRandomIntInclusive(0, 1) === 1 ? true : false
+    }
+}
+
+function _makeName(size = 1) {
+    var words = ['Pizza', 'Tofu', 'Coffee', 'Waffle']
+    var txt = ''
+    while (size > 0) {
+        size--
+        txt += words[Math.floor(Math.random() * words.length)] + ' '
+    }
+    return txt
+}
+function _makeLabel(size = 1) {
+    var words = ["On wheels", "Box game", "Art", "Baby", "Doll", "Puzzle", "Outdoor"]
+    var txt = ''
+    while (size > 0) {
+        size--
+        txt += words[Math.floor(Math.random() * words.length)] + ' '
+    }
+    return txt
 }

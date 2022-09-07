@@ -4,9 +4,10 @@ const router = express.Router()
 
 module.exports = router
 
+
 //LIST
 router.get('/', (req, res) => {
-    const filterBy = { name: req.query.name || '',  price: req.query.price || 0}
+    const filterBy = { name: req.query.name || '',  minPrice: req.query.minPrice || 0}
     // if(req.query.pageIdx) filterBy.pageIdx = req.query.pageIdx
     // if(req.query.userId) filterBy.userId = req.query.userId
 

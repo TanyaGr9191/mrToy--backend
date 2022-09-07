@@ -1,15 +1,7 @@
 [
   {
-    "_id": "t101",
-    "name": "Talking Doll",
-    "price": 123,
-    "label": "Doll",
-    "createdAt": 1631031801012,
-    "inStock": true
-  },
-  {
     "_id": "t102",
-    "name": "Barbie Doll",
+    "name": "Barbie Dolly",
     "price": 200,
     "label": "Baby",
     "createdAt": 1631031801016,
@@ -61,5 +53,18 @@
     "inStock": true,
     "createdAt": "Date: 07/09/2022 Time: 07:42 AM",
     "_id": "OUDIM"
+  },
+  {
+    "name": "ddddd",
+    "price": "4444",
+    "label": "Baby",
+    "_id": "NHcdn"
+  },
+  {
+    "name": "yyyy",
+    "price": "333",
+    "label": "Outdoor",
+    "_id": "WAdHl",
+    "createdAt": 1662559006076
   }
 ]
